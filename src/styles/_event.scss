@@ -5,17 +5,12 @@
     background-image:linear-gradient(#1B6CA7, #442BDB);
 
     &--frontend{
-        background-image: linear-gradient(variables.$blue1, variables.$blue2);
+        background-image: linear-gradient(variables.$green, variables.$blue2);
     }
-    &--ui-ux{
-        background-image: linear-gradient(variables.$blue2, variables.$pink);
+    &--discoteca{
+        background-image: linear-gradient(variables.$blue2, variables.$green2);
     }
-    &--data-science{
-        background-image: linear-gradient(variables.$pink, variables.$yellow);
-    }
-    &--backend{
-        background-image: linear-gradient(variables.$yellow, variables.$pink);
-    }
+
     &--image-left {
         .container{
             flex-direction: row-reverse;

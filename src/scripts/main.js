@@ -1,31 +1,23 @@
 AOS.init();
 
-const dataDoEvento = new Date("Dec 12, 2023 19:00:00");
-const timeStampDoEvento = dataDoEvento.getTime();
+const countdownElement = document.getElementById('countdown');
 
-const contadorElement = document.getElementById('contador');
-
-const contaAsHoras = setInterval(function() {
-    const agora = new Date();
-    const timeStampAtual = agora.getTime();
-
-    const distanciaAteOEvento = timeStampDoEvento - timeStampAtual;
-
-    const diasEmMS = 1000 * 60 * 60 * 24;
-    const horasEmMS = 1000 * 60 * 60;
-    const minutosEmMs = 1000 * 60;
-
-    const diasAteOEvento = Math.floor(distanciaAteOEvento / diasEmMS);
-    const horasAteOEvento = Math.floor((distanciaAteOEvento % diasEmMS) / horasEmMS);
-    const minutosAteOEvento = Math.floor((distanciaAteOEvento % horasEmMS) / minutosEmMs);
-    const segundosAteOEvento = Math.floor((distanciaAteOEvento % minutosEmMs) / 1000);
-
-    const countdownString = `${diasAteOEvento}d ${horasAteOEvento}h ${minutosAteOEvento}m ${segundosAteOEvento}s`;
-
-    if (distanciaAteOEvento < 0) {
-        clearInterval(contaAsHoras);
-        contadorElement.innerHTML = 'Evento expirado';
-    } else if (contadorElement.innerHTML !== countdownString) {
-        contadorElement.innerHTML = countdownString;
+    function countdown() {
+      const now = new Date();
+      const eventDate = new Date('May 20, 2023 19:00:00');
+      const distance = eventDate - now;
+      
+      if (distance < 0) {
+        countdownElement.innerHTML = 'EXPIRED';
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
-}, 1000);
+
+    setInterval(countdown, 1000);
